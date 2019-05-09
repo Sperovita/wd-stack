@@ -38,12 +38,16 @@ COMPOSE_PROJECT_NAME=nameThatWillPrefixYourContainersAndVolumes
 - Change the password
 - Go to WP_HOST_NAME and setup your wordpress
 
+## Domains
+
+You can use a wildcard record in your domain name registration or you can point all applicable sub domains at th ip address of your server.
+
 ## Notes
 
 This is my first real docker project so it may be rough around the edges.
 
 - The empty filebrowser.db file is needed for the bind to work correctly.
-- The uploads.ini is necassary for you tu upload anything substabtial to wordpress
+- The uploads.ini is necassary for you to upload anything substantial to wordpress
 - There is some debate about whether any container that connects to the web being able to see the docker socks, from my understaning this makes it fall to traefik to keep their software secure. There are some workarounds in the traefik docs to create another layer of security if that's something you need, it's in a subject matter that is too time intensive for me to research at the moment. https://docs.traefik.io/configuration/backends/docker/#security-considerations
 - If you do decide to spin up a second wordpress site you can clone this into another folder and delete traefik `rm -r traefik` or just leave it and only spin up the wordpress with different project names and host names (new passwords don't hurt) in the wordpress/.env file. You only need one traefik container for all your sites. I may create another repo for just the wordpress.
 - I believe both docker compose files can be ran at version '2' if needed

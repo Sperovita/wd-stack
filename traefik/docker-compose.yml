@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  web:
+    image: traefik
+    command: --docker --docker.domain=docker.localhost
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - webgateway
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/traefik.toml:/traefik.toml
+      - ./acme:/acme 
+networks:
+  webgateway:
+    driver: bridge
